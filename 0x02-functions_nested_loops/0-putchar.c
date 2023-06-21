@@ -1,15 +1,16 @@
 #include "main.h"
 /**
-* main - Entry point
-* Return: Always 0 (success)
+* main - Print "_Putchar" followed by a new line
+* Return: 0
 */
 int main(void)
 {
-char shty = "_putchar";
-while (shty)
+char _putchar[] = "_putchar";
+int i = 0;
+while (_putchar [i] != '\0')
 {
-_putchar(shty);
-shty;
+_putchar(_putchar[i]);
+i++;
 }
 _putchar('\n');
 return (0);
