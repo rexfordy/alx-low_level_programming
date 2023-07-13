@@ -1,18 +1,17 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 /**
- * malloc_checked - creates an array of integers.
- * @b: input.
- * Return: Output.
+ * malloc_checked - allocates memory using malloc, exit(98) if it fails
+ * @b: size of the memory block to be allocated
+ *
+ * Return: pointer to the address of the memory block
  */
 void *malloc_checked(unsigned int b)
 {
-	void *g = malloc(b);
+	void *block;
 
-	if (g == NULL)
-	{
+	block = malloc(b);
+	if (block == NULL)
 		exit(98);
-	}
-	return (g);
+	return (block);
 }
