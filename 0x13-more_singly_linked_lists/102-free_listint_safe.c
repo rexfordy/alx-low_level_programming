@@ -1,38 +1,39 @@
 #include "lists.h"
-
 /**
- * free_listint_safe - function to free list
- * @h: pointer to the pointer of the list
- * Return: count
+ * free_listint_safe - thsi function free a list in safe mode
+ * @h: the head of list
+ * Description: this function free a string in a safe mode
+ * section header: the header of this function is lists.h)*
+ * Return: the size of the list
  */
 size_t free_listint_safe(listint_t **h)
 {
-	size_t count_new = 0, count_comp = 0;
-	listint_t *tmp, *head, *comp;
+	listint_t *tmp, *actual;
+	size_t i;
+	int rest;
 
-	if (h == NULL || *h == NULL)
-		return (0);
-	head = comp = tmp = *h;
-	count_new = 0;
-	while (head != NULL)
+	i = 0, actual = *h;
+
+	while (actual)
 	{
-		comp = *h;
-		count_comp = 0;
-		while (count_new > count_comp)
+		rest = actual - actual->next;
+		if (rest > 0)
 		{
-			if (tmp == comp)
-			{
-				*h = NULL;
-				return (count_new);
-			}
-			count_comp++;
-			comp = comp->next;
+			tmp = actual->next;
+			free(actual);
+			actual = tmp;
+			i++;
+		} else
+		{
+			free(actual);
+			*h = NULL;
+			i++;
+			break;
 		}
-		count_new++;
-		tmp = head->next;
-		free((void *)head);
-		head = tmp;
+
 	}
-	*h = tmp;
-	return (count_new);
+
+	*h = NULL;
+
+	return (i);
 }
