@@ -10,7 +10,7 @@ void print_binary(unsigned long int b);
 int get_bit(unsigned long int t, unsigned int ind);
 int set_bit(unsigned long int *t, unsigned int index);
 int clear_bit(unsigned long int *n, unsigned int ind);
-unsigned int flag_bits(unsigned long int t, unsigned long int u);
+unsigned int flip_bits(unsigned long int t, unsigned long int u);
 int get_endianness(void);
 
 #endif
