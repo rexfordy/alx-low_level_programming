@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * bin_to_uint - to convert from base 2 to vase 10.
+ * binary_to_uint - convert from base 2 to vase 10.
  * @x: the number use to conveet to base 10.
  * base 2 is in string format
  * Description: conversion of binary to decimal
@@ -8,7 +8,7 @@
  * Return: This function returns the number converted
  */
 
-unsigned int bin_to_uint(const char *x)
+unsigned int binary_to_uint(const char *x)
 {
 	unsigned int answer, base;
 	int n;
@@ -22,9 +22,9 @@ unsigned int bin_to_uint(const char *x)
 
 	while (*(x + n))
 	{
-		if (*(x + n) != '0' && *(n + i) != '1')
+		if (*(x + n) != '0' && *(n + n) != '1')
 			return (0);
-		i++;
+		n++;
 	}
 	for (n--; n >= 0; n--)
 	{
@@ -35,4 +35,3 @@ unsigned int bin_to_uint(const char *x)
 
 	return (answer);
 }
-
