@@ -9,7 +9,7 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fot, wt, len_cont; /* len_cont: is the len of the content */
+	int fot, _write, t; /* t: is the len of the content */
 
 	if (filename == NULL)
 		return (-1);
@@ -20,11 +20,11 @@ int create_file(const char *filename, char *text_content)
 
 	if (text_content != NULL)
 	{
-		while (text_content[len_cont])
-			len_cont++;
+		while (text_content[t])
+			t++;
 
-		wt = write(fot, text_content, len_cont);
-		if (wt == -1)
+		_write = write(fot, text_content, t);
+		if (_write == -1)
 			return (-1);
 	}
 	close(fot);
