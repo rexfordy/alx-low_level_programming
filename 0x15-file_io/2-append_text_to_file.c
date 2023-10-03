@@ -9,7 +9,7 @@
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int fot, wt, no_cont; /* no_cont : the number of bytes of the content */
+	int fot, _write, t; /* t : the number of bytes of the content */
 
 	if (filename == NULL)
 		return (-1);
@@ -20,11 +20,11 @@ int append_text_to_file(const char *filename, char *text_content)
 
 	if (text_content)
 	{
-		while (text_content[no_cont])
-			no_cont++;
+		while (text_content[t])
+			t++;
 
-		wt = write(fot, text_content, no_cont);
-		if (wt == -1)
+		_write = write(fot, text_content, t);
+		if (_write == -1)
 			return (-1);
 	}
 	close(fot);

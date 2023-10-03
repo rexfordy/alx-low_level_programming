@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	int src_fot, d_fot;
-	int rd, cl_src, cl_d;
+	int _read, cl_src, cl_d;
 	char buffer[1024];
 
 	if (argc > 3 || argc < 3)
@@ -24,15 +24,15 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	d_fot = open(*(argv + 2), O_TRUNC | O_CREAT | O_WRONLY, 0664);
-	while ((rd = read(src_fot, buffer, 1024)) > 0)
+	while ((_read = read(src_fot, buffer, 1024)) > 0)
 	{
-		if (d_fot == -1 || (write(d_fot, buffer, rd) != rd))
+		if (d_fot == -1 || (write(d_fot, buffer, _read) != _read))
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", *(argv + 2));
 			exit(99);
 		}
 	}
-	if (rd < 0)
+	if (_read < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", *(argv + 1));
 		exit(98);

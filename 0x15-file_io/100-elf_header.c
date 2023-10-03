@@ -80,9 +80,9 @@ void version(unsigned char *el_ident)
 {
 	printf("  Version:                           ");
 	if (el_ident[EI_VERSION] == EV_CURRENT)
-		printf("%ind_magic(current)\n", EV_CURRENT);
+		printf("%i (current)\n", EV_CURRENT);
 	else
-		printf("%ind_magic\n", el_ident[EI_VERSION]);
+		printf("%i\n", el_ident[EI_VERSION]);
 }
 
 /**
@@ -166,7 +166,7 @@ void entry(unsigned int el_ent, unsigned char *el_ident)
  */
 int main(int argc, char *argv[])
 {
-	int fot, rd, _close;
+	int fot, _read, _close;
 	Elf64_Ehdr *file;
 
 	if (argc > 2 || argc < 2)
@@ -180,8 +180,8 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", *(argv + 1));
 		exit(98);
 	}
-	rd = read(fot, file, sizeof(Elf64_Ehdr));
-	if (rd == -1)
+	_read = read(fot, file, sizeof(Elf64_Ehdr));
+	if (_read == -1)
 	{
 		free(file);
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", *(argv + 1));
