@@ -1,38 +1,65 @@
 #include "main.h"
 /**
-* print_times_table - Prints the times table of the input,
-* starting with 0.
-* @n: The value of the times table to be printed.
-*/
+ * print_spaces - This prints commas and spaces
+ * @n: is a integer define the number of spaces
+(* a blank line
+* Description: This prints spaces)?
+* Return: No return a void function.
+ */
+void print_spaces(int n)
+{
+	int i;
+
+	_putchar(',');
+
+	for (i = 0; i < n; i++)
+	{
+		_putchar(' ');
+	}
+}
+/**
+ * print_times_table - This prints times table
+ * @n: The main table to print
+ * a blank line
+ * Description: this function print times table)?
+ * section header: the header file for this function is main.h
+ * Return: No return a void function.
+ */
 void print_times_table(int n)
 {
-int num, mult, prod;
-if (n >= 0 && n <= 15)
-{
-for (num = 0; num <= n; num++)
-{
-_putchar('0');
-for (mult = 1; mult <= n; mult++)
-{
-_putchar(',');
-_putchar(' ');
-prod = num * mult;
-if (prod <= 99)
-_putchar(' ');
-if (prod <= 9)
-_putchar(' ');
-if (prod >= 100)
-{
-_putchar((prod / 100) + '0');
-_putchar(((prod / 10)) % 10 + '0');
-}
-else if (prod <= 99 && prod >= 10)
-{
-_putchar((prod / 10) + '0');
-}
-_putchar((prod % 10) + '0');
-}
-_putchar('\n');
-}
-}
+	int table, number;
+
+	if (n < 0 || n > 15)
+		return;
+	for (table = 0; table <= n; table++)
+	{
+		for (number = 0; number <= n; number++)
+		{
+			int r;
+
+			r = table * number;
+			if (number && r < 10)
+				print_spaces(3);
+			else if (r >= 10 && r < 100)
+				print_spaces(2);
+			else if (r >= 100)
+				print_spaces(1);
+			if (r >= 10 && r < 100)
+			{
+				_putchar((r / 10) + '0');
+				_putchar((r % 10) + '0');
+			}
+			else if (r >= 100)
+			{
+				_putchar((r / 100) + '0');
+				_putchar(((r / 10) % 10) + '0');
+				_putchar((r % 10) + '0');
+			}
+			else
+			{
+				_putchar(r + '0');
+			}
+		}
+		_putchar('\n');
+	}
 }
