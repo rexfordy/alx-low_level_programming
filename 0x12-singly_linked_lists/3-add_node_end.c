@@ -1,64 +1,41 @@
 #include "lists.h"
+
 /**
- * add_node_end - This adds a new node to the end of a list
- * a blank line
- *@head: This is the head of list
- *@str: This is the string to put in the new node
- * Description: This adds a new node to the end of a list
- * section header: the header of this function is lists.h
- * Return: the list
+ * add_node_end - this adds a new node at the end
+ * of a list_t list.
+ * @head: this is the head of the linked list.
+ * @str: this is the string to store in the list.
+ * Return: this returns address of the head.
  */
+
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *node, *tail;
-	char *_str;
+	list_t *new_node, *current_node;
+	size_t t;
 
-	tail = *head;
-
-	if (str == NULL)
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
 		return (NULL);
-	node = malloc(sizeof(list_t));
-	if (node == NULL)
-		return (NULL);
-	_str = strdup(str);
-	if (_str == NULL)
+
+	new_node->str = strdup(str);
+
+	for (t = 0; str[t]; t++)
+		;
+
+	new_node->len = t;
+	new_node->next = NULL;
+	current_node = *head;
+
+	if (current_node == NULL)
 	{
-		free(node);
-		return (NULL);
-	}
-	node->len = _strlen(_str);
-	node->str = _str;
-	node->next = '\0';
-
-	if (*head == '\0')
-	{
-		*head = node;
-		return (node);
-	}
-
-	while (tail->next)
-		tail = tail->next;
-
-	tail->next = node;
-
-	return (tail);
-
-}
-/**
- * _strlen - this functions prints the length of a string
- * a blank line
- *@s: string to print.
- * Description: this function prints the length of a string?
- * section header: the header of this function is list.h
- * Return: This returns the length in int
- */
-int _strlen(char *s)
-{
-	if (*s != '\0')
-	{
-		s++;
-		return (1 + _strlen(s));
+		*head = new_node;
 	}
 	else
-		return (0);
+	{
+		while (current_node->next != NULL)
+			current_node = current_node->next;
+		current_node->next = new_node;
+	}
+
+	return (*head);
 }
